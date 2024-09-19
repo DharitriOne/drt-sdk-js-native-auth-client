@@ -3,7 +3,7 @@ import MockAdapter, { RequestHandler } from "axios-mock-adapter";
 import { NativeAuthClient } from '../src';
 
 describe("Native Auth", () => {
-  let mock: MockAdapter;
+  let mock: any;
   const ADDRESS = 'moa1qnk2vmuqywfqtdnkmauvpm8ls0xh00k8xeupuaf6cm6cd4rx89qq0h8w50';
   const SIGNATURE = '906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d';
   const BLOCK_HASH = 'ab459013b27fdc6fe98eed567bd0c1754e0628a4cc16883bf0170a29da37ad46';
@@ -13,7 +13,7 @@ describe("Native Auth", () => {
   const ACCESS_TOKEN = 'bW9hMXFuazJ2bXVxeXdmcXRkbmttYXV2cG04bHMweGgwMGs4eGV1cHVhZjZjbTZjZDRyeDg5cXEwaDh3NTA.YUhSMGNITTZMeTloY0drdVpHaGhjbWwwY21rdVkyOXQuYWI0NTkwMTNiMjdmZGM2ZmU5OGVlZDU2N2JkMGMxNzU0ZTA2MjhhNGNjMTY4ODNiZjAxNzBhMjlkYTM3YWQ0Ni44NjQwMC5lMzA.906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d';
 
   const INVALID_HASH_ERROR = 'Validation failed for block hash \'hash\'. Length should be 64.';
-  const onLatestBlockHashGet = function (mock: MockAdapter): RequestHandler {
+  const onLatestBlockHashGet = function (mock: any): RequestHandler {
     return mock.onGet(`https://api.dharitri.com/blocks/latest?ttl=${TTL}&fields=hash`);
   };
 
@@ -78,7 +78,7 @@ describe("Native Auth", () => {
 });
 
 describe("Native Auth with gateway", () => {
-  let mock: MockAdapter;
+  let mock: any;
   const ADDRESS = 'moa1qnk2vmuqywfqtdnkmauvpm8ls0xh00k8xeupuaf6cm6cd4rx89qq0h8w50';
   const SIGNATURE = '906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d';
   const BLOCK_HASH = 'ab459013b27fdc6fe98eed567bd0c1754e0628a4cc16883bf0170a29da37ad46';
@@ -90,12 +90,12 @@ describe("Native Auth with gateway", () => {
   const METASHARD = 4294967295;
   const GATEWAY = 'https://gateway.dharitri.com';
 
-  const onBlocksByRound = function (mock: MockAdapter): RequestHandler {
+  const onBlocksByRound = function (mock: any): RequestHandler {
     return mock.onGet(`${GATEWAY}/blocks/by-round/${LATEST_ROUND}`);
   };
 
   //https://testnet-gateway.dharitri.com/network/status/4294967295
-  const onNetworkStatus = function (mock: MockAdapter): RequestHandler {
+  const onNetworkStatus = function (mock: any): RequestHandler {
     return mock.onGet(`${GATEWAY}/network/status/${METASHARD}`);
   };
 
